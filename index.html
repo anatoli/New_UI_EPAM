@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="googlebot" content="noindex, nofollow">
+
+        <link rel="icon" type="image/png" href="app/favicon-16.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="app/favicon-32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="app/favicon-96.png" sizes="96x96">
+
+        <link rel="stylesheet" type="text/css" href="styles/result-light.css">
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+        <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+        <script type="text/javascript" src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    </head>
+
+    <body ng-app="EpamApp">
+
+
+
+
+
+            <div class="container-fluid new-width-eis">
+
+                <div class="col-md-6">
+                  <div  ui-view="leftGrid"></div>
+                </div>
+
+                <div class="col-md-6 ">
+
+                  <div ui-view="rightGrid"></div>
+
+                </div>
+
+
+        </div>
+        <script type="text/javascript" src="scripts/app.js"></script>
+        <script type="text/javascript" src="scripts/Controllers/LeftGridCtrl.js"></script>
+        <script type="text/javascript" src="scripts/Controllers/RightGridCtrl.js"></script>
+
+    </body>
+
+
+
+</html>
