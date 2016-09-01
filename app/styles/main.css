@@ -39,8 +39,8 @@ body {
 }
 
 .angular-ui-tree-handle:hover {
-  color: #438eb9;
-  background: #f4f6f7;
+  color: #fff;
+  background: #bfbfbf;
   border-color: #dce2e8;
 }
 
@@ -57,4 +57,21 @@ body {
   background-color: #687074 !important;
   color: #FFF !important;
 }
+
+.tree-node {
+  margin: 0;
+}
+
+.node-text {
+  padding: 0;
+  cursor: pointer;
+}
+
+.selected-node {
+  color: #fff;
+   font-weight: bold;
+   background: #bfbfbf;
+}
+
+
 /****************************/

@@ -6,7 +6,8 @@
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.tree'
+  'ui.tree',
+  'ngTable',
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
     //delete $httpProvider.defaults.headers.common['X-Requested-With'];
