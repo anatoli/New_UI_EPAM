@@ -49,22 +49,33 @@
 
     <div class="col-lg-6">
       <h3>Привязанные вопросы</h3>
-      <table class="table table-custom"
-             ng-table="tableParams" show-filter="true">
-        <tr ng-repeat="row in questionsList"
-            ng-class="{tableItemSelected: (row.id === gridSelection.id)}">
-          <td data-title="'Вопрос'" filter="{' title': 'text'}" sortable="'title'">
-            {{row.title}}
-          </td>
-          <td data-title="'Уровень сложности'" filter="{ 'level': 'number'}" sortable="'level'" >
-            {{row.level}}
-          </td>
+      <div ng-if="!noTableDataQ">
+        <table  class="table table-bordered table-striped table-condensed"
+                ng-table="tableParams" show-filter="true">
+          <tr ng-repeat="row in questionsList track by row.id"
+              ng-class="{tableItemSelected: (row.id === gridSelection.id)}">
+            <td data-title="'Вопрос'" filter="{title: 'text'}" sortable="'title'">
+              {{row.title}}
+            </td>
+            <td data-title="'Уровень сложности'" filter="{level:'number'}" sortable="'level'" >
+              {{row.level}}
+            </td>
+            <td data-title="'Действия'" class="center-block">
+              <div class="btnGroup">
+                <button class="btn btn-xs btn-primary glyphicon glyphicon-pencil"></button>
+                <button class="btn btn-xs btn-danger glyphicon glyphicon-remove"></button>
+              </div>
 
-        </tr>
-      </table>
-      <h2 ng-if="noTableData"
+            </td>
+
+
+          </tr>
+        </table>
+      </div>
+
+      <h2 ng-if="noTableDataQ"
           class="text-center">
-        Нотариальных действий нет
+        Вопросов по данной теме нет
       </h2>
     </div>
   </div>
