@@ -1,6 +1,6 @@
 angular.module('EpamNewUIApp')
 
-    .controller('LeftGridCtrl', ['$scope','$http', 'NgTableParams', function ($scope, $http, NgTableParams ) {
+    .controller('LeftGridCtrl', ['$scope','$http', 'NgTableParams', '$uibModal', function ($scope, $http, NgTableParams, $uibModal ) {
     $scope.noTableData = true;
     $scope.noTableDataQ = true;
       $http.get('testData.json').success(function(response) {
@@ -124,6 +124,64 @@ angular.module('EpamNewUIApp')
         alert('finish');
 
     };
+    $scope.add = function () {
+      $scope.newAddShow = true
+    };
+
+    $scope.revertAdd = function () {
+      $scope.newAddShow = false;
+      $scope.newTitle = null;
+    };
+    $scope.saveAdd = function () {
+      console.log($scope);
+      var sch = {};
+      sch.nodes=[];
+      sch.title = $scope.example;
+      sch.id = $scope.data[$scope.data.length-1].id+1;
+      sch.level = 10;
+
+      $scope.data.push(sch);
+      console.log( $scope.data);
+      $scope.newAddShow = false;
+    };
+
+    $scope.questionsAdd = function (data) {
+      $uibModal.open({
+        backdropClass: 'backdrop',
+        backdrop: 'static',
+        animation: false,
+        size: 'lg',
+        templateUrl: 'views/questionsAdd.html',
+        resolve: {
+          dataModal: function () {
+            return {
+              'data': data,
+              'typeCase': null
+            }
+          }
+        },
+        controller: function ($scope, $uibModalInstance, dataModal) {
+          console.log(dataModal.data);
+          $scope.header = dataModal.data.title;
+          $scope.answers = [1,2,3,4];
+          $scope.addAnswer = function () {
+            var arr = $scope.answers;
+            arr.push( arr[arr.length-1]+1);
+          };
+          $scope.radioModel = 'Middle';
+
+          $scope.checkModel = {
+            false: true,
+            true: false,
+          };
+          $scope.ok = function () {
+          };
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+        }
+      });
+    }
 
       var _defaultFilter = {
         //from: getFromDate(),
@@ -142,61 +200,6 @@ angular.module('EpamNewUIApp')
 
       $scope.gridSelection = null;
       $scope.gridSelected = false;
-
-      // $scope.configTableParams = createUsingFullOptions($scope.filter);
-      // function createUsingFullOptions(filter) {
-      //   var initialParams = {
-      //     page: (filter.start + filter.count)/filter.count || 1,
-      //     count: filter.count || 1000
-      //   };
-      //   var initialSettings = {
-      //     counts: [10, 25, 50, 75],
-      //     getData: function($defer, params) {
-      //       var selectPage = params.page();
-      //       var selectItemOnPage = params.count();
-      //       var orders = params.orderBy();
-      //       var sort = "", dir = "";
-      //       orders.forEach(function(item, i){
-      //         sort += item.substring(1) + ',';
-      //         dir += item.substring(0,1) == '+' ? 'desc' : 'asc' + ',';
-      //       });
-      //       if(orders.length > 0){
-      //         $scope.filter.sort = sort.substring(0, sort.length - 1);
-      //         $scope.filter.dir = dir.substring(0, dir.length - 1);
-      //       }
-      //
-      //       $scope.filter.start = (selectPage - 1) * selectItemOnPage;
-      //       $scope.filter.count = selectItemOnPage;
-      //
-      //       // $state.go($state.current, { filter: $scope.filter}, {notify: false});
-      //       $http(
-      //         {
-      //           method: 'GET',
-      //           url: 1+'.json'})
-      //         .success(function(response) {
-      //           $scope.questionsList = response.data;
-      //           alert($scope.questionsList[0].title);
-      //           if(response.data.length > 0){
-      //             $scope.noTableDataQ = false;
-      //           }else{
-      //             $scope.noTableDataQ = true;
-      //           }
-      //         })
-      //         .error(function(data, status, headers, config) {
-      //           $scope.noTableDataQ = true;
-      //         });
-      //       // Cases.get($scope.filter, function (response) {
-      //       //   params.total(response.total_count);
-      //       //   $scope.noTableData = (response.total_count === 0) ? true : false;
-      //       //   //console.log("TABLE: " + JSON.stringify(response.data, null, 2));
-      //       //   $defer.resolve(response.data);
-      //       // }, function (error) {
-      //       //   //
-      //       // });
-      //     }
-      //   };
-      //   // return new NgTableParams(initialParams, initialSettings);
-      // }
 
       function reloadGrid(clearSelected){
         if(clearSelected){

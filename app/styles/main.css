@@ -5,6 +5,17 @@ body {
     padding: 1%;
 }
 
+input {
+  color: #7c9eb2;
+}
+ul{
+  display: inline;
+  height: 0;
+}
+li {
+  list-style-type: none; /* Убираем маркеры */
+}
+
 .hero-unit {
     margin: 50px auto 0 auto;
     width: 300px;
@@ -78,3 +89,17 @@ body {
 .btnGroup{
   margin-left: 25%;
 }
+.headerGrid{
+  height: 40px;
+  padding: 1% 0% 1% 1.2%;
+  background: #5cb85c;
+  Color: #fff;
+  font-weight: bold;
+  margin-left: 0.03%;
+  margin-bottom: 1%;
+  width: 100%;
+  border: 1px solid #dae2ea;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+}
+
+

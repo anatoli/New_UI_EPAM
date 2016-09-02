@@ -8,6 +8,8 @@
   'ui.router',
   'ui.tree',
   'ngTable',
+  'ui.bootstrap',
+  'ui.bootstrap.typeahead'
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
     //delete $httpProvider.defaults.headers.common['X-Requested-With'];

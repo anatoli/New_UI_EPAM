@@ -1,0 +1,15 @@
+<form class="cf-modal-style">
+
+    <div class="modal-body">
+        <div>
+            <i class="glyphicon glyphicon-warning-sign alarm-icon"></i>
+        </div>
+        <h3 class="modal-title">{{title}}</h3>
+
+    </div>
+    <fe-alert ng-model="alert"></fe-alert>
+    <div class="modal-footer">
+        <button  ng-click="ok()" class="btn btn-success btn-success-custom">Да</button>
+        <button type="button" ng-click="cancel()" class="btn btn-danger btn-danger-custom">Нет</button>
+    </div>
+</form>

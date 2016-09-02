@@ -12,6 +12,8 @@
       class="glyphicon glyphicon-remove"></span></a>
     <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span
       class="glyphicon glyphicon-plus"></span></a>
+    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="questionsAdd(node)" style="margin-right: 8px;"><span
+      class="glyphicon glyphicon-question-sign"></span></a>
   </div>
   <ol ui-tree-nodes=""  data-nodrop-enabled ng-model="node.nodes" ng-class="{hidden: collapsed}">
     <li ng-repeat="node in node.nodes" ng-click="alert('Select '+node.title)" ui-tree-node ng-include="'nodes_renderer.html'">
@@ -30,13 +32,31 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row ">
     <div class="col-lg-6">
-      <h3>Tree view
+      <h3>Topics
       </h3>
-      <p>
-        Search: <input ng-model="query" ng-change="findNodes()"/>
-      </p>
+      <div class="row headerGrid">
+        <div class="col-lg-6">
+          <p>
+            Search: <input ng-model="query" ng-change="findNodes()"/>
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <a class="pull-right btn btn-default btn-xs" ng-click="add()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="angular-ui-tree-handle" ng-show="newAddShow">
+        <input class="add" ng-model="example" placeholder="New name" >
+
+        <a class="pull-right btn btn-warning btn-xs" ng-click="revertAdd()" style="margin-right: 8px;"><span
+          class="glyphicon glyphicon-trash"></span></a>
+        <a class="pull-right btn btn-success btn-xs" ng-click="saveAdd()"><span
+          class="glyphicon glyphicon-save"></span></a>
+      </div>
       <!-- Nested node template -->
       <div ui-tree="options" data-drag-enabled="false" data-nodrop-enabled="false" ng-show="data.length>0" >
         <ol ui-tree-nodes="" ng-model="data">
@@ -49,6 +69,13 @@
 
     <div class="col-lg-6">
       <h3>Привязанные вопросы</h3>
+      <div class="row headerGrid">
+        <div class="col-lg-6">
+          <p>
+            Table issues
+          </p>
+        </div>
+      </div>
       <div ng-if="!noTableDataQ">
         <table  class="table table-bordered table-striped table-condensed"
                 ng-table="tableParams" show-filter="true">
