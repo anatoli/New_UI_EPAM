@@ -155,7 +155,7 @@ angular.module('EpamNewUIApp')
         resolve: {
           dataModal: function () {
             return {
-              'data': data,
+              'data': $scope.treeSelection,
               'typeCase': null
             }
           }
@@ -198,8 +198,8 @@ angular.module('EpamNewUIApp')
       $scope.filter = angular.extend(angular.copy(_defaultFilter));
       //$scope.filter = angular.copy(_defaultFilter);
 
-      $scope.gridSelection = null;
-      $scope.gridSelected = false;
+      // $scope.gridSelection = null;
+      // $scope.gridSelected = false;
 
       function reloadGrid(clearSelected){
         if(clearSelected){
